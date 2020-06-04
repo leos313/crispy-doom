@@ -13,6 +13,8 @@ Cite the work using:
 }
 ```
 
+Also on [Hackster](https://www.hackster.io/electronicsleonardo/doom-with-hardware-accelerators-on-fpga-d1733f) you can find some of other information.
+
 ## Instruction to run the DOOM using 8 HW accelerator on the FPGA
 
 * You must create your system following the instructions (and using the scripts) provided [here](https://github.com/leos313/DOOM_FPGA).
