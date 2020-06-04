@@ -1,5 +1,18 @@
 # DOOM with FPGA HW ACCELERATION
 
+Cite the work using:
+
+```
+@inproceedings{surianolima2020doom,
+  title={Accelerating a Classic 3D Video Game on Heterogeneous Reconfigurable MPSoCs},
+  author={Suriano, Leonardo and Lima, David and de la Torre, Eduardo},
+  booktitle={International Symposium on Applied Reconfigurable Computing},
+  pages={136--150},
+  year={2020},
+  organization={Springer}
+}
+```
+
 ## Instruction to run the DOOM using 8 HW accelerator on the FPGA
 
 * You must create your system following the instructions (and using the scripts) provided [here](https://github.com/leos313/DOOM_FPGA).
