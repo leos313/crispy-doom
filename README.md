@@ -21,6 +21,8 @@ source compile_game_with_HW.sh
 ./src/crispy-doom-setup -iwad src/doom1.wad
 ```
 
+**Please note**: I normally use `Configure Display` -> `1920x1080` -> `Save parameters and launch DOOM`.
+
 ## Original README of crispy-doom 3.0
 
 Chocolate Doom aims to accurately reproduce the original DOS version of
