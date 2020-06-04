@@ -29,6 +29,8 @@ tags
 *.so
 *.so.[0-9]*
 *.a
+!libstretch2x_8hw_100.a
+!libxlnk_stub.a
 *.pyc
 *.pyo
 *.rej

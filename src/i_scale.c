@@ -28,6 +28,14 @@
 #include "m_argv.h"
 #include "z_zone.h"
 
+// New headers of the new HW library:
+
+#include "cf_stub.h"
+//#include "sds_incl.h"
+#include "portinfo.h"
+//#include "accel_info.h"
+//#include "sds_lib.h"
+#include "stretch2x_hw.h"
 // Should be I_VideoBuffer
 
 static byte *src_buffer;
@@ -469,6 +477,7 @@ static boolean I_Stretch1x(int x1, int y1, int x2, int y2)
 {
     byte *bufp, *screenp;
     int y;
+    printf("function I_Stretch1x\n");
 
     // Only works with full screen update
 
@@ -554,10 +563,50 @@ static inline void WriteBlendedLine2x(byte *dest, byte *src1, byte *src2,
 
 // 2x stretch (640x480)
 
-static boolean I_Stretch2x(int x1, int y1, int x2, int y2)
+//void I_Stretch2x_HW(byte src[SRC_RANGE], byte dest[DEST_RANGE], byte fragments)
+
+//NEW FUNCTIONS:
+
+#define INPUT_WIDTH 	(640)
+#define INPUT_HEIGHT 	(400)
+
+#define OUTPUT_WIDTH 	(1280)
+#define OUTPUT_HEIGHT 	(960)
+
+static boolean I_Stretch2x(int x1, int y1, int x2, int y2){
+	byte *bufp, *screenp;
+    int y;
+    printf("function I_Stretch2x - HW\n");
+
+    // Only works with full screen update
+
+    if (x1 != 0 || y1 != 0 || x2 != SCREENWIDTH || y2 != SCREENHEIGHT)
+    {
+        return false;
+    }    
+
+    // Need to byte-copy from buffer into the screen buffer
+
+    bufp = src_buffer + y1 * SCREENWIDTH + x1;
+    screenp = (byte *) dest_buffer + y1 * dest_pitch + x1;
+
+    // For every 5 lines of src_buffer, 12 lines are written to dest_buffer.
+    // (200 -> 480)
+    _p0_I_Stretch2x_HW1_async_1(bufp + 0*INPUT_WIDTH*sizeof(byte), screenp + 0*OUTPUT_WIDTH*sizeof(byte), 8);
+    _p0_I_Stretch2x_HW2_async_2(bufp + 50*INPUT_WIDTH*sizeof(byte), screenp + 120*OUTPUT_WIDTH*sizeof(byte), 8);
+	_p0_I_Stretch2x_HW3_async_3(bufp + 100*INPUT_WIDTH*sizeof(byte), screenp + 240*OUTPUT_WIDTH*sizeof(byte), 8);
+	_p0_I_Stretch2x_HW4_async_4(bufp + 150*INPUT_WIDTH*sizeof(byte), screenp + 360*OUTPUT_WIDTH*sizeof(byte), 8);
+	_p0_I_Stretch2x_HW5_async_5(bufp + 200*INPUT_WIDTH*sizeof(byte), screenp + 480*OUTPUT_WIDTH*sizeof(byte), 8);
+	_p0_I_Stretch2x_HW6_async_6(bufp + 250*INPUT_WIDTH*sizeof(byte), screenp + 600*OUTPUT_WIDTH*sizeof(byte), 8);
+	_p0_I_Stretch2x_HW7_async_7(bufp + 300*INPUT_WIDTH*sizeof(byte), screenp + 720*OUTPUT_WIDTH*sizeof(byte), 8);
+	_p0_I_Stretch2x_HW8_async_8(bufp + 350*INPUT_WIDTH*sizeof(byte), screenp + 840*OUTPUT_WIDTH*sizeof(byte), 8);
+}
+
+static boolean I_Stretch2x_orig(int x1, int y1, int x2, int y2)
 {
     byte *bufp, *screenp;
     int y;
+    printf("function I_Stretch2x - SW version\n");
 
     // Only works with full screen update
 
@@ -673,6 +722,7 @@ static boolean I_Stretch3x(int x1, int y1, int x2, int y2)
 {
     byte *bufp, *screenp;
     int y;
+    printf("function I_Stretch3x\n");
 
     // Only works with full screen update
 
@@ -814,6 +864,7 @@ static boolean I_Stretch4x(int x1, int y1, int x2, int y2)
 {
     byte *bufp, *screenp;
     int y;
+    printf("function I_Stretch4x\n");
 
     // Only works with full screen update
 
@@ -961,6 +1012,7 @@ static boolean I_Stretch5x(int x1, int y1, int x2, int y2)
 {
     byte *bufp, *screenp;
     int y;
+    printf("function I_Stretch5x\n");
 
     // Only works with full screen update
 
