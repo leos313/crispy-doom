@@ -4,6 +4,17 @@
 
 * You must create your system following the instructions (and using the scripts) provided [here](https://github.com/leos313/DOOM_FPGA).
 
+* You must have root priviledge for using HW:
+```
+sudo su
+```
+
+* The Hardware accelerators were already created. You need to upload the bitstream on the FPGA of the system:
+```
+cp bistreams/stretch2x_8hw_100MHz.bin /lib/firmware
+echo stretch2x_8hw_100MHz.bin > /sys/class/fpga_manager/fpga0/firmware 
+```
+
 * download the repo:
 ```
 git clone https://github.com/leos313/crispy-doom
