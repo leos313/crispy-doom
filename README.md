@@ -1,3 +1,27 @@
+# DOOM with FPGA HW ACCELERATION
+
+## Instruction to run the DOOM using 8 HW accelerator on the FPGA
+
+* You must create your system following the instructions (and using the scripts) provided [here](https://github.com/leos313/DOOM_FPGA).
+
+* download the repo:
+```
+git clone https://github.com/leos313/crispy-doom
+```
+
+* configure and build the system using the provided scripts:
+```
+source compile_game_with_HW.sh
+```
+
+* download the wad file from the [website](https://www.pc-freak.net/blog/doom-1-doom-2-doom-3-game-wad-files-for-download-playing-doom-on-debian-linux-via-freedoom-open-source-doom-engine/) and place it (`doom1.wad`) within the folder `src`.
+
+* You can run the game and play using the keybord:
+```
+./src/crispy-doom-setup -iwad src/doom1.wad
+```
+
+## Original README of crispy-doom 3.0
 
 Chocolate Doom aims to accurately reproduce the original DOS version of
 Doom and other games based on the Doom engine in a form that can be
